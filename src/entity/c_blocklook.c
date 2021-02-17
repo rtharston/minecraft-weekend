@@ -31,8 +31,7 @@ static void tick(struct BlockLookComponent *c_blocklook, struct Entity entity) {
 static void render(struct BlockLookComponent *c_blocklook, struct Entity entity) {
     if (c_blocklook->flags.render && c_blocklook->hit) {
         AABB aabb;
-        BLOCKS[world_get_block(entity.ecs->world, c_blocklook->pos)]
-            .get_aabb(entity.ecs->world, c_blocklook->pos, aabb);
+        get_block_aabb(entity.ecs->world, c_blocklook->pos, aabb);
         glms_aabb_scale(aabb, (vec3s) {{ 1.005f, 1.005f, 1.005f }}, aabb);
         renderer_aabb(
             &state.renderer, aabb,

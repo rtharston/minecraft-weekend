@@ -6,7 +6,7 @@ static ivec2s get_texture_location(struct World *world, ivec3s pos, enum Directi
     return GLMS_IVEC2_ZERO;
 }
 
-static void get_aabb(struct World *world, ivec3s pos, AABB dest) {
+void get_block_aabb(struct World *world, ivec3s pos, AABB dest) {
     dest[0] = IVEC3S2V(pos);
     dest[1] = (vec3s) {{ pos.x + 1.0f, pos.y + 1.0f, pos.z + 1.0f }};
 }
@@ -32,6 +32,5 @@ struct Block BLOCK_DEFAULT = {
     .get_texture_location = get_texture_location,
     .get_animation_frames = NULL,
     .get_torchlight = NULL,
-    .get_aabb = get_aabb,
     .get_mesh_information = get_mesh_information
 };

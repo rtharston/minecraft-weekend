@@ -43,7 +43,7 @@ enum BlockFlags {
     B_TRANSPARENT = 1 << 0,
     // if true, this block is treated like a liquid
     LIQUID = 1 << 1,
-    // if true, then this block's aabb is determined by get_aabb
+    // if true, then this block's aabb is determined by get_block_aabb
     SOLID = 1 << 2,
 };
 
@@ -76,8 +76,10 @@ struct Block {
 
     // if not NULL, this block is treated as a light source
     Torchlight (*get_torchlight)(struct World *world, ivec3s pos);
-    void (*get_aabb)(struct World *world, ivec3s pos, AABB dest);
 };
+
+
+void get_block_aabb(struct World *world, ivec3s pos, AABB dest);
 
 #define MAX_BLOCK_ID INT16_MAX
 

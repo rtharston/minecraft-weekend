@@ -467,7 +467,7 @@ size_t world_get_aabbs(struct World *self, AABB area, AABB *aabbs, size_t n) {
                 struct Block block = BLOCKS[world_get_block(self, pos)];
                 
                 if (block.flags & SOLID) {
-                    block.get_aabb(self, pos, aabbs[i++]);
+                    get_block_aabb(self, pos, aabbs[i++]);
 
                     if (i == n) {
                         // TODO: real warning here?
