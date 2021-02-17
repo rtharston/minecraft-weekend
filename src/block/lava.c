@@ -17,9 +17,9 @@ static Torchlight get_torchlight(struct World *world, ivec3s pos) {
 void lava_init() {
     struct Block lava = BLOCK_DEFAULT;
     lava.id = LAVA;
-    lava.transparent = true;
-    lava.liquid = true;
-    lava.solid = false;
+    lava.flags |= B_TRANSPARENT;
+    lava.flags |= LIQUID;
+    lava.flags &= ~SOLID;
     lava.mesh_type = BLOCKMESH_LIQUID;
     lava.get_texture_location = get_texture_location;
     lava.get_animation_frames = get_animation_frames;

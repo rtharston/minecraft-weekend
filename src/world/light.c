@@ -51,7 +51,7 @@ static void add_propagate(
             struct Block n_block = BLOCKS[chunk_data_to_block(n_data)];
 
             // TODO: it may be incorrect to check n_val != 0 to subvert the block behavior call
-            if ((n_val != 0 || n_block.transparent) &&
+            if ((n_val != 0 || (n_block.flags & B_TRANSPARENT)) &&
                 ((sunlight_down && n_val < val) || (n_val + 1 < val))) {
 
                 // sunlight does not dim as it is propagated down
@@ -115,7 +115,7 @@ static void remove_channel(
 }
 
 void torchlight_add(struct World *world, ivec3s pos, Torchlight light) {
-    if (!BLOCKS[world_get_block(world, pos)].transparent) {
+    if (!(BLOCKS[world_get_block(world, pos)].flags & B_TRANSPARENT)) {
         return;
     }
 
@@ -144,7 +144,7 @@ void light_update(struct World *world, ivec3s pos) {
         for (enum Direction d = 0; d < 6; d++) {
             ivec3s pos_n = glms_ivec3_add(pos, DIR2IVEC3S(d));
 
-            if (!BLOCKS[world_get_block(world, pos_n)].transparent) {
+            if (!(BLOCKS[world_get_block(world, pos_n)].flags & B_TRANSPARENT)) {
                 continue;
             }
 

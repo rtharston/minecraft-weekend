@@ -79,7 +79,7 @@ static void tick(struct PhysicsComponent *c_physics, struct Entity entity) {
     if (c_physics->flags.gravity) {
         c_physics->velocity = glms_vec3_add(
             c_physics->velocity,
-            glms_vec3_scale(GRAVITY, block.solid ? 1.0f : block.gravity_modifier));
+            glms_vec3_scale(GRAVITY, (block.flags & SOLID) ? 1.0f : block.gravity_modifier));
     }
 
     // attempt to move by velocity

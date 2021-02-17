@@ -78,7 +78,7 @@ void chunk_on_modify(
         }
 
         if (!self->flags.generating) {
-            if (block.transparent) {
+            if (block.flags & B_TRANSPARENT) {
                 world_heightmap_recalculate(self->world, (ivec2s) {{ pos_w.x, pos_w.z }});
                 
                 // propagate lighting through this block

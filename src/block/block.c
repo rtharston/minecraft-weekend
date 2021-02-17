@@ -24,9 +24,7 @@ struct Block BLOCKS[MAX_BLOCK_ID];
 // Contains all default behavior for a block
 struct Block BLOCK_DEFAULT = {
     .id = -1,
-    .transparent = false,
-    .liquid = false,
-    .solid = true,
+    .flags = SOLID,
     .gravity_modifier = 1.0f,
     .drag = 1.0f,
     .sliperiness = 1.0f,

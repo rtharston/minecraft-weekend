@@ -233,9 +233,9 @@ static void chunkmesh_mesh(struct ChunkMesh *self) {
                         params.block_n = &BLOCKS[chunk_data_to_block(params.data_n)];
 
                         if (params.block->mesh_type == BLOCKMESH_CUSTOM ||
-                            (params.block_n->transparent && !params.block->transparent) ||
-                            (params.block->transparent &&
-                                params.block_n->transparent &&
+                            ((params.block_n->flags & B_TRANSPARENT) && !(params.block->flags & B_TRANSPARENT)) ||
+                            ((params.block->flags & B_TRANSPARENT) &&
+                                (params.block_n->flags & B_TRANSPARENT) &&
                                 params.block_n->id != params.block->id)) {
                             params.direction = d;
 

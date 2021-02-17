@@ -215,7 +215,7 @@ void lavapool(struct Chunk *chunk, FGet get, FSet set, s32 x, s32 y, s32 z) {
             for (s32 i = -1; i <= 1; i++) {
                 for (s32 j = -1; j <= 1; j++) {
                     enum BlockId block = get(chunk, xx + i, h, zz + j);
-                    if (block != LAVA && BLOCKS[block].transparent) {
+                    if (block != LAVA && (BLOCKS[block].flags & B_TRANSPARENT)) {
                         allow = false;
                         break;
                     }

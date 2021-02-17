@@ -45,13 +45,13 @@ static void tick(struct MovementComponent *c_movement, struct Entity entity) {
         if (c_movement->directions.down) {
             direction = glms_vec3_sub(direction, (vec3s){{0.0f, 1.0f, 0.0f}});
         }
-    } else if (block.liquid) {
+    } else if (block.flags & LIQUID) {
         // float up
         if (c_movement->directions.up) {
             // increase float speed to breach surface if the top of this entity is
             // above the liquid, even more so if the entity is also colliding on
             // the x or z axes (presumably trying to exit the liquid)
-            const bool breaching = !top_block.liquid,
+            const bool breaching = !(top_block.flags & LIQUID),
                 exiting = breaching && (c_physics->stopped.x || c_physics->stopped.z);
             const f32 float_speed =
                 speed * 0.7f *
@@ -83,7 +83,7 @@ static void tick(struct MovementComponent *c_movement, struct Entity entity) {
 
     if (c_movement->flags.flying) {
         xz_modifier = 1.0f;
-    } else if (block.liquid) {
+    } else if (block.flags & LIQUID) {
         xz_modifier = c_physics->flags.grounded ? 0.8f : 0.45f;
     } else {
         xz_modifier = c_physics->flags.grounded ? 1.0f : 0.07f;

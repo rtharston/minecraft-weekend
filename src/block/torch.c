@@ -32,8 +32,8 @@ static void get_mesh_information(
 void torch_init() {
     struct Block torch = BLOCK_DEFAULT;
     torch.id = TORCH;
-    torch.transparent = true;
-    torch.solid = false;
+    torch.flags |= B_TRANSPARENT;
+    torch.flags &= ~SOLID;
     torch.mesh_type = BLOCKMESH_CUSTOM;
     torch.get_texture_location = get_texture_location;
     torch.get_torchlight = get_torchlight;

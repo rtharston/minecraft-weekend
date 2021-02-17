@@ -7,8 +7,8 @@ static ivec2s get_texture_location(struct World *world, ivec3s pos, enum Directi
 void rose_init() {
     struct Block rose = BLOCK_DEFAULT;
     rose.id = ROSE;
-    rose.transparent = true;
-    rose.solid = false;
+    rose.flags |= B_TRANSPARENT;
+    rose.flags &= ~SOLID;
     rose.mesh_type = BLOCKMESH_SPRITE;
     rose.get_texture_location = get_texture_location;
     BLOCKS[ROSE] = rose;

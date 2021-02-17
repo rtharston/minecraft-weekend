@@ -38,20 +38,23 @@ enum BlockId {
     PINE_LEAVES = 24
 };
 
+enum BlockFlags {
+    // if true, this block is treated as it is transparent
+    B_TRANSPARENT = 1 << 0,
+    // if true, this block is treated like a liquid
+    LIQUID = 1 << 1,
+    // if true, then this block's aabb is determined by get_aabb
+    SOLID = 1 << 2,
+};
+
 struct Block {
     enum BlockId id;
 
-    // if true, this block is treated as it is transparent
-    bool transparent;
-
-    // if true, this block is treated like a liquid
-    bool liquid;
+    // info about the block like transparent, liquid, and solid
+    enum BlockFlags flags;
 
     // the mesh type of this block, see blockmesh.h
     enum BlockMeshType mesh_type;
-
-    // if true, then this block's aabb is determined by get_aabb
-    bool solid;
 
     // gravity modifier for non-solid blocks
     f32 gravity_modifier;

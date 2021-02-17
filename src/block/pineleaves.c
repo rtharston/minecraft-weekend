@@ -7,7 +7,7 @@ static ivec2s get_texture_location(struct World *world, ivec3s pos, enum Directi
 void pine_leaves_init() {
     struct Block pine_leaves = BLOCK_DEFAULT;
     pine_leaves.id = PINE_LEAVES;
-    pine_leaves.transparent = true;
+    pine_leaves.flags |= B_TRANSPARENT;
     pine_leaves.get_texture_location = get_texture_location;
     BLOCKS[PINE_LEAVES] = pine_leaves;
 }

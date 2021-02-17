@@ -7,7 +7,7 @@
 
 static bool block_raycast(struct World *world, ivec3s pos) {
     struct Block block = BLOCKS[world_get_block(world, pos)];
-    return block.id != AIR && !block.liquid;
+    return block.id != AIR && !(block.flags & LIQUID);
 }
 
 static void tick(struct BlockLookComponent *c_blocklook, struct Entity entity) {

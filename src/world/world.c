@@ -177,7 +177,7 @@ void chunk_heightmap_recalculate(struct Chunk *chunk) {
                 pos_c.y = y;
                 pos_w.y = y + chunk->position.y;
 
-                if (!BLOCKS[chunk_get_block(chunk, pos_c)].transparent) {
+                if (!(BLOCKS[chunk_get_block(chunk, pos_c)].flags & B_TRANSPARENT)) {
                     HEIGHTMAP_SET(heightmap, ((ivec2s) {{ pos_c.x, pos_c.z }}), pos_w.y);
                     break;
                 }
@@ -194,7 +194,7 @@ void world_heightmap_recalculate(struct World *self, ivec2s p) {
 
     for (s64 y = y_max; y >= y_min; y--) {
         ivec3s w = (ivec3s) {{ p.x, y, p.y }};
-        if (!BLOCKS[world_get_block(self, w)].transparent) {
+        if (!(BLOCKS[world_get_block(self, w)].flags & B_TRANSPARENT)) {
             world_heightmap_set(self, p, y);
             return;
         }
@@ -466,7 +466,7 @@ size_t world_get_aabbs(struct World *self, AABB area, AABB *aabbs, size_t n) {
                 ivec3s pos = (ivec3s) {{ x, y, z }};
                 struct Block block = BLOCKS[world_get_block(self, pos)];
                 
-                if (block.solid) {
+                if (block.flags & SOLID) {
                     block.get_aabb(self, pos, aabbs[i++]);
 
                     if (i == n) {

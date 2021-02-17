@@ -111,7 +111,7 @@ void blockmesh_face(struct ChunkMesh *mesh, struct BlockMeshParams params) {
         *indices = &mesh->buffers[INDICES];
     
     // add this face into the face buffer if it's transparent
-    if (params.block->transparent) {
+    if (params.block->flags & B_TRANSPARENT) {
         struct Face face = {
             .indices_base = indices->elements,
             .position = glms_vec3_add((vec3s) {{
@@ -140,7 +140,7 @@ void blockmesh_face(struct ChunkMesh *mesh, struct BlockMeshParams params) {
         APPEND(u32, data,
             MAKE_LIGHT_DATA(
                 params.direction,
-                chunk_data_to_light(params.block->transparent ? params.data : params.data_n)));
+                chunk_data_to_light((params.block->flags & B_TRANSPARENT) ? params.data : params.data_n)));
     }
 
     // emit indices

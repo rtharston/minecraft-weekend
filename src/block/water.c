@@ -13,9 +13,9 @@ static void get_animation_frames(ivec2s out[BLOCK_ATLAS_FRAMES]) {
 void water_init() {
     struct Block water = BLOCK_DEFAULT;
     water.id = WATER;
-    water.transparent = true;
-    water.liquid = true;
-    water.solid = false;
+    water.flags |= B_TRANSPARENT;
+    water.flags |= LIQUID;
+    water.flags &= ~SOLID;
     water.gravity_modifier = 0.72f;
     water.drag = 10.0f;
     water.mesh_type = BLOCKMESH_LIQUID;

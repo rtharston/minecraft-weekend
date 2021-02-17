@@ -7,8 +7,8 @@ static ivec2s get_texture_location(struct World *world, ivec3s pos, enum Directi
 void tallgrass_init() {
     struct Block tallgrass = BLOCK_DEFAULT;
     tallgrass.id = TALLGRASS;
-    tallgrass.transparent = true;
-    tallgrass.solid = false;
+    tallgrass.flags |= B_TRANSPARENT;
+    tallgrass.flags &= ~SOLID;
     tallgrass.mesh_type = BLOCKMESH_SPRITE;
     tallgrass.get_texture_location = get_texture_location;
     BLOCKS[TALLGRASS] = tallgrass;
