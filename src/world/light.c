@@ -202,7 +202,7 @@ void light_apply(struct Chunk *chunk) {
 
                 // enqueue torchlight emitting blocks
                 struct Block block = BLOCKS[chunk_get_block(chunk, pos_c)];
-                if (block.can_emit_light) {
+                if (block.get_torchlight != NULL) {
                     Torchlight value = block.get_torchlight(chunk->world, pos_w);
                     chunk_set_torchlight(chunk, pos_c, value);
                     ENQUEUE(&torchlight_queue, ((struct LightNode) { .pos = pos_w, .value = value }));

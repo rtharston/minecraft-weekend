@@ -47,12 +47,6 @@ struct Block {
     // if true, this block is treated like a liquid
     bool liquid;
 
-    // if true, this block is treated as a light source
-    bool can_emit_light;
-
-    // if true, this block's textures are determined with get_animation_frames
-    bool animated;
-
     // the mesh type of this block, see blockmesh.h
     enum BlockMeshType mesh_type;
 
@@ -73,7 +67,11 @@ struct Block {
         struct World *world, ivec3s pos, enum Direction d,
         vec3s *offset_out, vec3s *size_out,
         ivec2s *uv_offset_out, ivec2s *uv_size_out);
+
+    // if not NULL, this is called to determine this block's textures
     void (*get_animation_frames)(ivec2s out[BLOCK_ATLAS_FRAMES]);
+
+    // if not NULL, this block is treated as a light source
     Torchlight (*get_torchlight)(struct World *world, ivec3s pos);
     void (*get_aabb)(struct World *world, ivec3s pos, AABB dest);
 };

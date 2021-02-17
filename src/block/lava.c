@@ -18,10 +18,8 @@ void lava_init() {
     struct Block lava = BLOCK_DEFAULT;
     lava.id = LAVA;
     lava.transparent = true;
-    lava.animated = true;
     lava.liquid = true;
     lava.solid = false;
-    lava.can_emit_light = true;
     lava.mesh_type = BLOCKMESH_LIQUID;
     lava.get_texture_location = get_texture_location;
     lava.get_animation_frames = get_animation_frames;

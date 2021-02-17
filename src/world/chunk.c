@@ -69,11 +69,11 @@ void chunk_on_modify(
     if (data_block != prev_block) {
         ivec3s pos_w = glms_ivec3_add(self->position, pos);
 
-        if (block_p.can_emit_light) {
+        if (block_p.get_torchlight != NULL) {
             light_remove(self->world, pos_w);
         }
 
-        if (block.can_emit_light) {
+        if (block.get_torchlight != NULL) {
             torchlight_add(self->world, pos_w, block.get_torchlight(self->world, pos_w));
         }
 

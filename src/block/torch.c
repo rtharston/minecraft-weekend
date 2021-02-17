@@ -34,7 +34,6 @@ void torch_init() {
     torch.id = TORCH;
     torch.transparent = true;
     torch.solid = false;
-    torch.can_emit_light = true;
     torch.mesh_type = BLOCKMESH_CUSTOM;
     torch.get_texture_location = get_texture_location;
     torch.get_torchlight = get_torchlight;

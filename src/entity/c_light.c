@@ -14,7 +14,7 @@ static void tick(struct LightComponent *c_light, struct Entity entity) {
 
         // reset block light if it was removed
         struct Block block = BLOCKS[world_get_block(entity.ecs->world, c_light->last.pos)];
-        if (block.can_emit_light) {
+        if (block.get_torchlight != NULL) {
             torchlight_add(
                 entity.ecs->world,
                 c_light->last.pos,

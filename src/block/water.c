@@ -14,7 +14,6 @@ void water_init() {
     struct Block water = BLOCK_DEFAULT;
     water.id = WATER;
     water.transparent = true;
-    water.animated = true;
     water.liquid = true;
     water.solid = false;
     water.gravity_modifier = 0.72f;
