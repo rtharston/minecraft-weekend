@@ -35,7 +35,7 @@ void init() {
         .jump_height = 1.0f
     }));
     ecs_add(player, C_CAMERA, ((struct CameraComponent) {
-        .offset = (vec3s) {{ 0.0f, 0.8f, 0.0f }}
+        .offset = default_camera_offset
     }));
     ecs_add(player, C_CONTROL);
     ecs_add(player, C_BLOCKLOOK, ((struct BlockLookComponent) {

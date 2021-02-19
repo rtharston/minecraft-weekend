@@ -18,6 +18,7 @@ struct MovementComponent {
     } directions;
 
     struct {
+        bool sneaking: 1;
         bool flying: 1;
     } flags;
 };

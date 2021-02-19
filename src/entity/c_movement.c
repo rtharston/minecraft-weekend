@@ -80,9 +80,17 @@ static void tick(struct MovementComponent *c_movement, struct Entity entity) {
 
     // determine if X/Z movement is slowed
     f32 xz_modifier;
+    
+    if (c_movement->flags.sneaking) {
+        c_camera->offset = sneaking_camera_offset;
+    } else {
+        c_camera->offset = default_camera_offset;
+    }
 
     if (c_movement->flags.flying) {
         xz_modifier = 1.0f;
+    } else if (c_movement->flags.sneaking) {
+        xz_modifier = 0.33f;
     } else if (block.flags & LIQUID) {
         xz_modifier = c_physics->flags.grounded ? 0.8f : 0.45f;
     } else {

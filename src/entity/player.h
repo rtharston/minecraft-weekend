@@ -32,4 +32,7 @@ void player_render(struct EntityPlayer *self);
 void player_update(struct EntityPlayer *self);
 void player_tick(struct EntityPlayer *self);
 
+extern const vec3s default_camera_offset;
+extern const vec3s sneaking_camera_offset;
+
 #endif

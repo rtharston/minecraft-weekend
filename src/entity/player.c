@@ -1,5 +1,8 @@
-// #include "player.h"
+#include "player.h"
 // #include "../state.h"
+
+const vec3s default_camera_offset = (vec3s) {{ 0.0f, 0.8f, 0.0f }};
+const vec3s sneaking_camera_offset = (vec3s) {{ 0.0f, 0.6f, 0.0f }};
 
 // void player_init(struct EntityPlayer *self, struct World *world) {
 //     memset(self, 0, sizeof(struct EntityPlayer));
